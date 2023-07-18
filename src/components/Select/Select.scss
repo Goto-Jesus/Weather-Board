@@ -1,0 +1,31 @@
+@import '../../styles/utils/vars';
+@import '../../styles/utils/mixins';
+
+.locales {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__icon * {
+    fill: $color5;
+    width: 12px;
+    height: 12px;
+    margin-right: 5.83px;
+  }
+
+  select {
+    font-size: 16px;
+    font-weight: $fontWeight-Regular;
+    color: $color5;
+    border: none;
+    outline: none;
+
+    option {
+      color: black;
+    }
+  }
+}

@@ -1,0 +1,284 @@
+@import '../../styles/utils/vars';
+@import '../../styles/utils/mixins';
+
+.card {
+  $origin: &;
+  @include shadow;
+
+  ::selection {
+    background-color: $colorGradientOrange;
+    color: $colorWhite;
+  }
+
+  background-color: $colorCard;
+
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  position: relative;
+
+  width: 350px;
+  height: 257px;
+
+  border-radius: 5px;
+  padding: 10px 15px;
+
+  transition: $transition-time;
+
+  &:hover {
+    transform: scale(1.025);
+  }
+  
+  @media (max-width: 480px) {
+    width: 100%;
+    max-width: 270px;
+    padding: 5px;
+
+  }
+
+  &--cold {
+    ::selection {
+      background-color: $colorGradientBlue;
+      color: $colorWhite;
+    }
+
+    background-color: $colorCardBlue;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    &__city {
+      font-size: 16px;
+      font-weight: $fontWeight-Regular;
+      margin-bottom: 4px;
+
+      @media (max-width: 480px) {
+        font-size: 14px;
+      }
+    }
+    &__date {
+      font-size: 18px;
+      font-weight: $fontWeight-Light;
+
+      @media (max-width: 480px) {
+        font-size: 16px;
+      }
+    }
+
+    margin-bottom: 16px;
+  }
+
+  &__display {
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    margin-right: 16px;
+    height: 50px;
+    top: -10px;
+
+    pointer-events: none;
+    user-select: none;
+
+    &__weather-icon {
+      width: 50px;
+      height: 50px;
+
+      @media (max-width: 480px) {
+        width: 25px;
+        height: 25px;
+      }
+
+      filter: drop-shadow(0 0 8px $colorGradientOrange);
+
+      #{$origin}--cold & {
+        filter: drop-shadow(0 0 8px $colorGradientBlue);
+      }
+    }
+
+    &__typeOfWeather {
+      display: inline-block;
+      font-size: 16px;
+      font-weight: $fontWeight-Regular;
+      color: $color4;
+
+      @media (max-width: 480px) {
+        font-size: 14px;
+      }
+    }
+  }
+
+  &__chart {
+    position: relative;
+    user-select: none;
+
+    &__wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+
+      box-shadow: inset 0 0 5px $colorCard, inset 0 0 10px $colorCard,
+        inset 0 0 15px $colorCard;
+
+      #{$origin}--cold & {
+        box-shadow: inset 0 0 5px $colorCardBlue, inset 0 0 10px $colorCardBlue,
+          inset 0 0 15px $colorCardBlue;
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    &__temperature {
+      display: flex;
+      height: 64px;
+
+      &__amount {
+        font-size: 44px;
+        font-weight: $fontWeight-Regular;
+
+        @media (max-width: 480px) {
+          font-size: 34px;
+        }
+      }
+
+      &__switch {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        height: 32px;
+        user-select: none;
+
+        .line {
+          border-right: 1px solid $color4;
+          height: 23px;
+        }
+
+        @media (max-width: 480px) {
+          gap: 5px;
+
+          .line {
+            height: 13px;
+          }
+        }
+
+        &__option {
+          cursor: pointer;
+          background: none;
+          border: none;
+          padding: 0;
+
+          font-size: 22px;
+          font-weight: $fontWeight-Regular;
+          color: $color4;
+
+          @media (max-width: 480px) {
+            font-size: 18px;
+          }
+
+          &:hover{
+            filter: drop-shadow(0 0 8px $colorGradientOrange);
+
+            #{$origin}--cold & {
+              filter: drop-shadow(0 0 8px $colorGradientBlue);
+            }
+          }
+
+          &--active {
+            font-weight: $fontWeight-Regular;
+            color: black;
+          }
+        }
+      }
+    }
+
+    &__temperature-feelsLike {
+      font-size: 13px;
+      font-weight: $fontWeight-Regular;
+      color: $color4;
+    }
+  }
+
+  &__statictics {
+    font-size: 12px;
+    font-weight: $fontWeight-Regular;
+    text-align: end;
+    margin-right: 5px;
+
+    &__amount {
+      font-weight: $fontWeight-SemiBold;
+      color: $colorGradientOrange;
+
+      #{$origin}--cold & {
+        color: $colorGradientBlue;
+      }
+    }
+  }
+
+  &__close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    padding: 4.79px 6.75px;
+    margin: 1px;
+
+    user-select: none;
+    cursor: pointer;
+
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 0 0 $colorCard;
+    background-color: $colorCard;
+
+    #{$origin}--cold & {
+      box-shadow: 0 0 0 0 $colorCardBlue;
+      background-color: $colorCardBlue;
+    }
+
+    transition: $transition-time;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 4px -2px $colorShadow, 0 2px 1px 0 $colorShadow;
+      filter: brightness(102%);
+      transition: $transition-time;
+    }
+
+    &:active {
+      transform: translateY(2px);
+      box-shadow: inset 0 2px 1px 0 $colorShadow;
+      filter: brightness(95%);
+      transition: $transition-time / 10;
+    }
+
+    &__icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 7px;
+      height: 7px;
+      font-size: 7px;
+      font-weight: 900;
+
+      color: $color4;
+    }
+  }
+}

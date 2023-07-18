@@ -1,0 +1,10 @@
+@mixin gradient($firstColor, $secondColor) {
+  background: transparent
+    linear-gradient(180deg, $firstColor 0, $secondColor 100%) 0 0 no-repeat
+    padding-box;
+  opacity: 0.3;
+}
+
+@mixin shadow() {
+  box-shadow: 0 3px 6px $colorShadow;
+}

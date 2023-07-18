@@ -1,0 +1,19 @@
+@import './../../styles/utils/vars';
+
+.chart {
+  font-size: 10px;
+  font-weight: $fontWeight-Regular;
+  color: $color4;
+
+  &__LabelList {
+    font-size: 6px;
+    fill: $color4;
+  }
+
+  &__XAsix {
+    display: block;
+    font-size: 8px;
+    fill: $color4;
+  }
+}
+

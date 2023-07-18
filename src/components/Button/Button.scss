@@ -1,0 +1,36 @@
+@import '../../styles/utils/vars';
+@import '../../styles/utils/mixins';
+
+.button {
+  @include shadow;
+
+  cursor: pointer;
+
+  width: 100%;
+  padding: 10px;
+
+  background: $colorGradientBlue;
+  color: $colorWhite;
+
+  border-radius: 5px;
+  border: none;
+
+  font-size: 14px;
+  text-align: center;
+
+  transition: all $transition-time;
+
+  &:hover {
+    filter: saturate(360%);
+    box-shadow: 0 3px 6px $colorShadow, 0 3px 12px $colorShadow;
+    text-shadow: 0 0 2px $color10, 0 0 1px $color10;
+    transform: translateY(-3px);
+  }
+
+  &:active {
+    @include shadow;
+    filter: saturate(50%);
+    text-shadow: none;
+    transform: translateY(3px);
+  }
+}

@@ -1,20 +1,14 @@
-// /* eslint-disable @typescript-eslint/no-unused-vars */
-// /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { useEffect, useState, useRef } from 'react';
-import './App.scss';
+import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from './components/Button/Button';
-import { CardStatistics } from './types/CardStatistics';
-import { ListOfCards } from './components/ListOfCards';
-import { getByLoacation, getByName } from './api/weather';
-import { createCardOfWeather } from './utils/createCardOfWeather';
-import { useLocalStorage } from './utils/useLocalStorage';
-import { Dropdown } from './components/Dropdown/Dropdown';
-import { SomeComponent } from './components/someComponent/someComponent';
-import { Select } from './components/Select/Select';
-import { Search } from './components/Search';
+import { useLocalStorage } from '../../utils/useLocalStorage';
+import { CardStatistics } from '../../types/CardStatistics';
+import { getByLoacation, getByName } from '../../api/weather';
+import { createCardOfWeather } from '../../utils/createCardOfWeather';
+import { Dropdown } from '../Dropdown/Dropdown';
+import { Button } from '../Button';
+import './Search.scss';
 
-export const App: React.FC = () => {
+export const Search: React.FC = () => {
   const { t } = useTranslation();
 
   const [isError, setIsError] = useState(false);
@@ -80,12 +74,6 @@ export const App: React.FC = () => {
     clearSearch();
   };
 
-  const handleDeleteCard = (id: string) => {
-    const filteredCards = cards.filter((card) => card.id !== id);
-
-    setCards(filteredCards);
-  };
-
   const handleOpen = () => {
     setIsOpened(true);
   };
@@ -106,39 +94,27 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <header className="header">
-        <div className="search" ref={menuRef}>
-          <input
-            type="text"
-            className="search__box"
-            placeholder={t('placeholder')}
-            value={search}
-            onClick={handleOpen}
-            onChange={(event) => setSearch(event.target.value)}
-          />
+    <div className="search" ref={menuRef}>
+      <input
+        type="text"
+        className="search__box"
+        placeholder={t('placeholder')}
+        value={search}
+        onClick={handleOpen}
+        onChange={(event) => setSearch(event.target.value)}
+      />
 
-          <div className="search__list">
-            <Dropdown
-              isOpened={isOpened}
-              searchList={searchList}
-              onSetSearch={handleSetSearch}
-            />
-          </div>
+      <div className="search__list">
+        <Dropdown
+          isOpened={isOpened}
+          searchList={searchList}
+          onSetSearch={handleSetSearch}
+        />
+      </div>
 
-          <div className="search__button">
-            <Button onPressed={loadCard} onClose={handleClose} />
-          </div>
-        </div>
-        <Search />
-
-        <Select />
-      </header>
-
-      <main>
-        <ListOfCards cards={cards} onDelete={handleDeleteCard} />
-        <SomeComponent />
-      </main>
-    </>
+      <div className="search__button">
+        <Button onPressed={loadCard} onClose={handleClose} />
+      </div>
+    </div>
   );
 };
